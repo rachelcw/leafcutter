@@ -1,3 +1,10 @@
+"""
+1. clustering leafcutter 
+2. peer
+3. covariate table
+4. differential splicing
+5. filtering by FDR
+"""
 #.junc file
 echo filename.junc >> filename.txt ## the txt file contains the path of .junc file
 #find the 712 junc file and put the full path of each file in txt file
@@ -10,7 +17,7 @@ done
 # clustering the junc file
 lc_py="/private1/home/ls/rachelcw/projects/LEAFCUTTER/leafcutter/clustering/leafcutter_cluster.py"
 junc_file="/private1/home/ls/rachelcw/projects/LEAFCUTTER/juncfiles_20221211.txt"
-output="lc_20221211"
+output="lc_20230108"
 
 python $lc_py -j $junc_file -o $output  
 

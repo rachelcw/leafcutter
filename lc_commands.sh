@@ -7,6 +7,7 @@
 """
 #.junc file
 echo filename.junc >> filename.txt ## the txt file contains the path of .junc file
+
 #find the 712 junc file and put the full path of each file in txt file
 for file in `ls /home/ls/rachelcw/projects/LEAFCUTTER/ccle/junctions/`
 do
@@ -15,8 +16,8 @@ fullpath=$path$file
 echo $fullpath >> ccle_juncfiles_20230204.txt
 done
 # clustering the junc file
-lc_py="/home/ls/rachelcw/projects/LEAFCUTTER/leafcutter/clustering/leafcutter_cluster.py"
-junc_file="/home/ls/rachelcw/projects/LEAFCUTTER/ccle/ccle_juncfiles_20230204.txt"
+lc_py="~/projects/LEAFCUTTER/leafcutter/clustering/leafcutter_cluster.py"
+junc_file="~/projects/LEAFCUTTER/ccle/ccle_juncfiles_20230204.txt"
 output="ccle_20230204"
 
 python $lc_py -j $junc_file -o $output -l 500000 
@@ -41,7 +42,6 @@ docker run -v /home/ls/rachelcw/projects/LEAFCUTTER/:/data --rm garrettjenkinson
 [connect your files with -v of course]
 # gtf_to_exons
 docker run -v /home/ls/rachelcw/projects/LEAFCUTTER/:/data --rm garrettjenkinson/ubuntu18leafcutter:v0.2.9.1 Rscript /data/leafcutter/scripts/gtf_to_exons.R  /data/gencode.v42
-
 
 #gtf2leafcutter
 ./gtf2leafcutter.pl -o /home/ls/rachelcw/projects/BIO/gencode.v42 "/private1/private/resources/gencode.v42.annotation.gtf.gz"

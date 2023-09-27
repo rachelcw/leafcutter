@@ -8,21 +8,25 @@
 #.junc file
 echo filename.junc >> filename.txt ## the txt file contains the path of .junc file
 
-#find the 712 junc file and put the full path of each file in txt file
-for file in `ls /home/ls/rachelcw/projects/LEAFCUTTER/lc_20230512/`
+''' find the 712 junc file and put the full path of each file in txt file '''
+# for file in `ls /data01/private/projects/splicing_cll/data/cllmap/leafcutter/junctions_official_names/`
+# do
+# path='/home/ls/rachelcw/projects/LEAFCUTTER/ccle/junctions/'
+# fullpath=$path$file
+# echo $fullpath >> ccle_juncfiles_20230204.txt
+# done
+for file in `ls /data01/private/projects/splicing_cll/data/cllmap/leafcutter/junctions_official_names/`
 do
-path='/home/ls/rachelcw/projects/LEAFCUTTER/ccle/junctions/'
-fullpath=$path$file
-echo $fullpath >> ccle_juncfiles_20230204.txt
+echo $file >> /home/ls/rachelcw/projects/LEAFCUTTER/eden/juncion_files.txt
 done
 
-mv ./*.sorted.gz /home/ls/rachelcw/projects/LEAFCUTTER/lc_20230512/sorted/
+mv ./*.sorted.gz /home/ls/rachelcw/projects/LEAFCUTTER/sorted/
 
 
 # clustering the junc file
 lc_py="/home/ls/rachelcw/projects/LEAFCUTTER/leafcutter/clustering/leafcutter_cluster.py"
-junc_file="/home/ls/rachelcw/projects/LEAFCUTTER/juncfiles_20221211.txt"
-output="lc_20230512"
+junc_file="/home/ls/rachelcw/projects/LEAFCUTTER/eden/juncfiles.txt"
+output="leafcutter.20230730"
 
 python $lc_py -j $junc_file -o $output -s 1
 
@@ -52,4 +56,4 @@ docker run -v /home/ls/rachelcw/projects/LEAFCUTTER/:/data --rm garrettjenkinson
 
 
 #leafviz
-docker run -v /home/ls/rachelcw/projects/LEAFCUTTER/:/data --rm garrettjenkinson/ubuntu18leafcutter:v0.2.9.1 Rscript /data/leafcutter/leafviz/prepare_results.R -m /data/groups_file_peer.txt -c leafcutter /data/lc_20221211/lc_20221211_perind_numers.counts.gz /data/DS/lc_ds_20221213_cluster_significance.txt /data/DS/lc_ds_20221213_effect_sizes.txt -o /data/DS/results.RData
+docker run -v /home/ls/rachelcw/projects/LEAFCUTTER/leafviz/:/data --rm garrettjenkinson/ubuntu18leafcutter:v0.2.9.1 Rscript /leafcutter/leafviz/prepare_results.R -m /data/groups_file_a2.txt  /data/lc_20230512_perind_numers.counts.gz /data/ds.a2.20230512_cluster_significance.txt /data/ds.a2.20230512_effect_sizes.txt /data/annontation_code.20221225 -o /data/results.RData
